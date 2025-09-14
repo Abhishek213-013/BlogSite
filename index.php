@@ -2,7 +2,6 @@
 include 'db.php';
 
 // Fetch site settings
-// Fetch site settings
 $settingsResult = $conn->query("SELECT * FROM settings WHERE id = 1");
 $settings = $settingsResult->fetch_assoc();
 
@@ -29,7 +28,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
       animation: marquee 15s linear infinite;
       white-space: nowrap;
     }
-    /* ⏸ Pause on hover */
+    /* Pause on hover */
     .marquee-wrapper:hover .animate-marquee {
       animation-play-state: paused;
     }
@@ -101,7 +100,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
 
   </div>
 
-  <!-- 🏷️ Header / Navbar -->
+  <!--  Header / Navbar -->
   <header class="border-b bg-white">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
       <!-- Logo -->
@@ -152,7 +151,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
           </ul>
         </nav>
 
-        <!-- 🔍 Search Icon -->
+        <!--  Search Icon -->
         <button id="searchToggle" class="text-gray-700 hover:text-red-600">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -162,7 +161,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
       </div>
     </div>
 
-    <!-- 🔎 Hidden Search Box -->
+    <!--  Hidden Search Box -->
     <div id="searchBox" class="hidden border-t bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 py-3 flex">
         <input type="text" id="searchInput" placeholder="Search blogs..."
@@ -172,7 +171,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
     </div>
   </header>
 
-  <!-- 📌 Main Content -->
+  <!--  Main Content -->
   <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Left Articles -->
     <section id="blogList" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -213,7 +212,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
     </aside>
   </main>
 
-  <!-- 📰 Latest Stories -->
+  <!--  Latest Stories -->
   <section class="max-w-7xl mx-auto px-4 py-8">
     <h2 class="text-xl font-bold mb-4">Latest Stories</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -235,7 +234,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
       </div>
   </section>
 
-  <!-- 🔧 JS -->
+  <!--  JS -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Search toggle

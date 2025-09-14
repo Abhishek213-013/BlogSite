@@ -87,7 +87,7 @@
       </script>
   </div>
 
-  <!-- 🏷️ Header / Navbar -->
+  <!--  Header / Navbar -->
   <header class="border-b bg-white">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
       <!-- Title + Subtitle -->
@@ -138,7 +138,7 @@
           </ul>
         </nav>
 
-        <!-- 🔍 Search Icon -->
+        <!--  Search Icon -->
         <button id="searchToggle" class="text-gray-700 hover:text-red-600">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -148,7 +148,7 @@
       </div>
     </div>
 
-    <!-- 🔎 Hidden Search Box -->
+    <!--  Hidden Search Box -->
     <div id="searchBox" class="hidden border-t bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 py-3 flex">
         <input type="text" id="searchInput" placeholder="Search blogs..."
@@ -158,7 +158,7 @@
     </div>
   </header>
 
-  <!-- 📌 Main Content -->
+  <!--  Main Content -->
   <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
     <!-- Left Articles -->
@@ -233,7 +233,7 @@
     </aside>
   </main>
 
-  <!-- 📰 Latest Stories -->
+  <!--  Latest Stories -->
   <section class="max-w-7xl mx-auto px-4 py-8">
     <h2 class="text-xl font-bold mb-4">Latest Stories</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
@@ -281,7 +281,7 @@
     </div>
   </section>
 
-  <!-- 🔧 JS: Toggle Search + Dropdowns -->
+  <!--  JS: Toggle Search + Dropdowns -->
   <script>
     const searchToggle = document.getElementById("searchToggle");
     const searchBox = document.getElementById("searchBox");

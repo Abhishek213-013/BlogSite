@@ -126,7 +126,7 @@
           </ul>
         </nav>
 
-        <!-- 🔍 Search Icon -->
+        <!--  Search Icon -->
         <button id="searchToggle" class="text-gray-700 hover:text-red-600">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -136,7 +136,7 @@
       </div>
   </div>
   
-  <!-- 🔎 Hidden Search Box -->
+  <!--  Hidden Search Box -->
   <div id="searchBox" class="hidden border-t bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex">
       <input type="text" id="searchInput" placeholder="Search blogs..."
