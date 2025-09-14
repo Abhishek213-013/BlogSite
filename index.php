@@ -8,7 +8,17 @@ $settings = $settingsResult->fetch_assoc();
 // Fetch latest posts
 $postsResult = $conn->query("SELECT * FROM posts ORDER BY created_at DESC LIMIT 6");
 $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
+
+// Function to get correct image path
+function getPostImage($imageUrl) {
+    if (!empty($imageUrl) && file_exists($imageUrl)) {
+        return $imageUrl; // Use uploaded image
+    } else {
+        return 'default.jpg'; // Default placeholder
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +27,7 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Standard Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Marquee Animation */
     @keyframes marquee {
@@ -176,21 +187,22 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
     <!-- Left Articles -->
     <section id="blogList" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
       <?php foreach ($posts as $post): ?>
-        <a href="post.php?id=<?= $post['id'] ?>" 
-          class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-          <img src="<?= htmlspecialchars($post['image_url']) ?>" 
-              alt="post" class="w-full h-48 object-cover">
-          <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
-          <div class="p-4">
-            <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">
-              <?= htmlspecialchars($post['category']) ?>
-            </span>
-            <h2 class="text-lg font-semibold mt-2"><?= htmlspecialchars($post['title']) ?></h2>
-            <p class="text-sm text-gray-500 mt-1">By <?= htmlspecialchars($post['author']) ?> • <?= date("F d, Y", strtotime($post['created_at'])) ?></p>
-            <p class="text-gray-600 mt-2 text-sm"><?= htmlspecialchars(substr($post['content'],0,100)) ?>...</p>
-          </div>
-        </a>
-      <?php endforeach; ?>
+    <a href="post.php?id=<?= $post['id'] ?>" 
+      class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
+      <img src="<?= htmlspecialchars('uploads/' . basename($post['image_url'])) ?>" alt="post" class="w-full h-48 object-cover">
+
+      <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
+      <div class="p-4">
+        <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">
+          <?= htmlspecialchars($post['category']) ?>
+        </span>
+        <h2 class="text-lg font-semibold mt-2"><?= htmlspecialchars($post['title']) ?></h2>
+        <p class="text-sm text-gray-500 mt-1">By <?= htmlspecialchars($post['author']) ?> • <?= date("F d, Y", strtotime($post['created_at'])) ?></p>
+        <p class="text-gray-600 mt-2 text-sm"><?= htmlspecialchars(substr($post['content'],0,100)) ?>...</p>
+      </div>
+    </a>
+<?php endforeach; ?>
+
     </section>
 
     <!-- Sidebar -->
@@ -233,7 +245,74 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
         </a>
       </div>
   </section>
-
+  <!-- Footer -->
+  <footer class="bg-gray-100 border-t mt-12 py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Recent Posts Section -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Recent Posts</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-600 hover:text-red-600">Simple Ways to Reduce Your Carbon Footprint and Help the Environment</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">How to Choose the Right Fitness Routine for Your Body Type and Goals</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">10 Practical Tips for Balancing Work, Family, and Personal Time Effectively</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">The Best Indoor Plants to Boost Your Mood and Purify the Air</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">How to Achieve Financial Independence and Live the Life You Want</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">How to Make Your Home Feel Cozy Without Spending a Fortune</a></li>
+          </ul>
+        </div>
+        
+        <!-- Featured Posts Section -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Featured Posts</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-600 hover:text-red-600">10 Fun Outdoor Activities to Enjoy With Your Kids</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">How to Create a Morning Routine That Sets You Success</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">10 Essential Tips for First-Time Home Buyers You Need to Know</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-red-600">The Importance of Self-Care and How to Incorporate It Into Your Routine</a></li>
+          </ul>
+        </div>
+        
+        <!-- Follow Us Section with Logos -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Follow Us On:</h3>
+          <div class="flex flex-wrap gap-3">
+            <a href="#" class="social-icon twitter" title="Twitter">
+              <i class="fab fa-twitter fa-lg"></i>
+            </a>
+            <a href="#" class="social-icon facebook" title="Facebook">
+              <i class="fab fa-facebook-f fa-lg"></i>
+            </a>
+            <a href="#" class="social-icon instagram" title="Instagram">
+              <i class="fab fa-instagram fa-lg"></i>
+            </a>
+            <a href="#" class="social-icon pinterest" title="Pinterest">
+              <i class="fab fa-pinterest-p fa-lg"></i>
+            </a>
+            <a href="#" class="social-icon youtube" title="YouTube">
+              <i class="fab fa-youtube fa-lg"></i>
+            </a>
+            <a href="#" class="social-icon linkedin" title="LinkedIn">
+              <i class="fab fa-linkedin-in fa-lg"></i>
+            </a>
+          </div>
+          
+          <div class="mt-6">
+            <h4 class="font-semibold mb-2">Subscribe to Our Newsletter</h4>
+            <div class="flex">
+              <input type="email" placeholder="Your email address" class="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-red-500 w-full">
+              <button class="bg-red-600 text-white px-4 py-2 rounded-r-lg hover:bg-red-700">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Copyright Section -->
+      <div class="border-t mt-8 pt-6 text-center text-gray-500 text-sm">
+        <p>Copyright © 2025 Standard Blog Theme: Standard Blog By Adore Themes.</p>
+      </div>
+    </div>
+  </footer>
   <!--  JS -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {

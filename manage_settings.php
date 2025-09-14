@@ -1,12 +1,14 @@
 <?php
-session_start();
+include 'admin_protect.php';
 include 'db.php';
 
-// Redirect if not logged in
-if (!isset($_SESSION['admin_id'])) {
+if (!isset($_SESSION['admin_token']) || time() > $_SESSION['admin_expiry']) {
+    session_unset();
+    session_destroy();
     header("Location: admin.php");
     exit();
 }
+
 
 // Fetch current settings
 $stmt = $conn->prepare("SELECT * FROM settings WHERE id = 1");
@@ -16,16 +18,16 @@ $settings = $result->fetch_assoc();
 
 // Update settings if form submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $site_title = $_POST['site_title'];
+    $site_title    = $_POST['site_title'];
     $site_subtitle = $_POST['site_subtitle'];
-    $hot_topics = $_POST['hot_topics'];
+    $hot_topics    = $_POST['hot_topics'];
 
     $update = $conn->prepare("UPDATE settings SET site_title=?, site_subtitle=?, hot_topics=? WHERE id=1");
     $update->bind_param("sss", $site_title, $site_subtitle, $hot_topics);
     if ($update->execute()) {
-        $settings['site_title'] = $site_title;
+        $settings['site_title']    = $site_title;
         $settings['site_subtitle'] = $site_subtitle;
-        $settings['hot_topics'] = $hot_topics;
+        $settings['hot_topics']    = $hot_topics;
         $success = "Settings updated successfully!";
     } else {
         $error = "Failed to update settings.";
