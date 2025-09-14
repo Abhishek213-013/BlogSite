@@ -128,23 +128,49 @@ $posts = $postsResult->fetch_all(MYSQLI_ASSOC);
 
     <!-- Existing Posts -->
     <h2 class="text-lg font-semibold mb-4">Existing Posts</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <?php foreach ($posts as $post): ?>
-        <div class="bg-white p-4 rounded shadow">
-            <h3 class="font-bold text-lg"><?= htmlspecialchars($post['title']) ?></h3>
-            <p class="text-gray-500 text-sm"><?= htmlspecialchars($post['subtitle']) ?></p>
-            <p class="text-gray-400 text-xs"><?= htmlspecialchars($post['category']) ?> • <?= htmlspecialchars($post['author']) ?> • <?= $post['created_at'] ?></p>
-            <?php if ($post['image_url']): ?>
-                <img src="<?= htmlspecialchars('uploads/' . basename($post['image_url'])) ?>" alt="image" class="my-2 w-full h-32 object-cover rounded">
-            <?php endif; ?>
-            <p class="text-gray-600"><?= htmlspecialchars(substr($post['content'],0,100)) ?>...</p>
-            <div class="mt-2 flex gap-2">
-                <button onclick="openEditModal(<?= $post['id'] ?>, '<?= addslashes($post['title']) ?>', '<?= addslashes($post['subtitle']) ?>', '<?= addslashes($post['category']) ?>', '<?= addslashes($post['image_url']) ?>', '<?= addslashes($post['author']) ?>', '<?= addslashes($post['content']) ?>')" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Edit</button>
-                <a href="?delete=<?= $post['id'] ?>" onclick="return confirm('Delete this post?');" class="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700">Delete</a>
-            </div>
-        </div>
-        <?php endforeach; ?>
+    <div class="bg-white rounded shadow overflow-x-auto">
+        <table class="w-full border-collapse">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="p-2 text-left">#</th>
+                    <th class="p-2 text-left">Title</th>
+                    <th class="p-2 text-left">Category</th>
+                    <th class="p-2 text-left">Author</th>
+                    <th class="p-2 text-left">Created</th>
+                    <th class="p-2 text-left">Image</th>
+                    <th class="p-2 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($posts as $index => $post): ?>
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="p-2"><?= $index + 1 ?></td>
+                    <td class="p-2 font-semibold"><?= htmlspecialchars($post['title']) ?></td>
+                    <td class="p-2"><?= htmlspecialchars($post['category']) ?></td>
+                    <td class="p-2"><?= htmlspecialchars($post['author']) ?></td>
+                    <td class="p-2 text-sm text-gray-500"><?= $post['created_at'] ?></td>
+                    <td class="p-2">
+                        <?php if ($post['image_url']): ?>
+                            <img src="<?= htmlspecialchars('uploads/' . basename($post['image_url'])) ?>" 
+                                alt="thumb" class="w-12 h-12 object-cover rounded">
+                        <?php else: ?>
+                            <span class="text-gray-400">No image</span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="p-2 flex gap-2 justify-center">
+                        <button 
+                            onclick="openEditModal(<?= $post['id'] ?>, '<?= addslashes($post['title']) ?>', '<?= addslashes($post['subtitle']) ?>', '<?= addslashes($post['category']) ?>', '<?= addslashes($post['image_url']) ?>', '<?= addslashes($post['author']) ?>', '<?= addslashes($post['content']) ?>')" 
+                            class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">Edit</button>
+                        <a href="?delete=<?= $post['id'] ?>" 
+                        onclick="return confirm('Delete this post?');" 
+                        class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm">Delete</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
+
 </main>
 
 <!-- Edit Modal -->

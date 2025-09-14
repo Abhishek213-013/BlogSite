@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technology Blog - Standard Blog</title>
+  <title>Finance - Standard Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
@@ -20,42 +20,36 @@
 
       <!-- Technology Posts -->
       <a href="post1.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/09/pexels-ketut-subiyanto-4246234-min.jpg" alt="post" class="w-full h-48 object-cover">
+        <img src="uploads/fitness_routine.jpg" alt="post" class="w-full h-48 object-cover">
         <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">6 min read</span>
         <div class="p-4">
-          <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">Technology</span>
-          <h2 class="text-lg font-semibold mt-2">The Best Indoor Plants to Boost Your Mood and Purify the Air</h2>
+          <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">Finance</span>
+          <h2 class="text-lg font-semibold mt-2">How to Choose the Right Fitness Routine for Your Body Type and Goals </h2>
           <p class="text-sm text-gray-500 mt-1">By Admin • September 12, 2025</p>
           <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit commodo nec, dictumst placerat nisi aptent morbi […] </p>
         </div>
       </a>
 
       <a href="post2.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/09/pexels-anna-nekrashevich-8989415-min.jpg" alt="post" class="w-full h-48 object-cover">
+        <img src="uploads/social_media.jpg" alt="post" class="w-full h-48 object-cover">
         <div class="p-4">
-          <h2 class="text-lg font-semibold">How to Use Social Media to Grow Your Business Effectively</h2>
+            <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">Finance</span>
+          <h2 class="text-lg font-semibold">How to Use Social Media to Grow Your Business Effectively </h2>
           <p class="text-sm text-gray-500 mt-1">By Admin • September 10, 2025</p>
           <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit cursus cubilia egestas, convallis aptent proin sed […] </p>
         </div>
       </a>
 
       <a href="post3.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/10/pexels-ron-lach-7849510-min.jpg" alt="post" class="w-full h-48 object-cover">
+        <img src="uploads/bigCity_vs_smallTown.jpg" alt="post" class="w-full h-48 object-cover">
         <div class="p-4">
-          <h2 class="text-lg font-semibold">The Ultimate Checklist for Planning a Perfect Wedding on a Budget</h2>
+          <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">Finance</span>
+          <h2 class="text-lg font-semibold">The Pros and Cons of Living in a Big City Versus Small Town</h2>
           <p class="text-sm text-gray-500 mt-1">By Admin • September 8, 2025</p>
           <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit cursus cubilia egestas, convallis aptent proin sed […] </p>
         </div>
       </a>
 
-      <a href="post4.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/09/pexels-shvetsa-3732658-min.jpg" alt="post" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">10 Essential Tips for First-Time Home Buyers You Need to Know</h2>
-          <p class="text-sm text-gray-500 mt-1">By Admin • September 5, 2025</p>
-          <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit molestie, conubia urna arcu vel nostra rutrum […] </p>
-        </div>
-      </a>
 
 
   </section>
@@ -69,28 +63,21 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
 
       <a href="story1.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/09/pexels-phreewil-535431-min.jpg" alt="story" class="w-full h-48 object-cover">
+        <img src="uploads/organise.jpg" alt="story" class="w-full h-48 object-cover">
         <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
         <div class="p-4">
-          <h3 class="font-semibold">How to Create a Morning Routine That Sets You Success</h3>
+          <h3 class="font-semibold">How to Declutter Your Home and Keep It Organized All</h3>
         </div>
       </a>
 
       <a href="story2.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/09/house-cup-saucer-ceramic-religion-coffee-cup-859030-pxhere.com-min-1.jpg" alt="story" class="w-full h-48 object-cover">
+        <img src="uploads/family_vac.jpg" alt="story" class="w-full h-48 object-cover">
         <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">6 min read</span>
         <div class="p-4">
-          <h3 class="font-semibold">The Best Eco-Friendly Products to Help You Live a Sustainable Lifestyle</h3>
+          <h3 class="font-semibold">The Ultimate Guide to Planning a Stress-Free Family Vacation This Year</h3>
         </div>
       </a>
 
-      <a href="story3.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="https://demo.adorethemes.com/standard-blog/wp-content/uploads/sites/169/2024/09/nature-branch-blossom-bird-wing-leaf-675034-pxhere.com-min.jpg" alt="story" class="w-full h-48 object-cover">
-        <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">7 min read</span>
-        <div class="p-4">
-          <h3 class="font-semibold">How to Save Money on Groceries Without Sacrificing Quality or Taste</h3>
-        </div>
-      </a>
 
     </div>
   </section>
