@@ -1,5 +1,6 @@
 <?php
-include 'db.php';
+include __DIR__ . '/../db.php';
+
 
 // Fetch site settings
 $settingsResult = $conn->query("SELECT * FROM settings WHERE id = 1");
@@ -28,12 +29,13 @@ function getPostImage($imageUrl) {
   <title>Standard Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
+
 
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <?php include 'header.php'; ?>   <!-- ✅ Navbar + Hot Topics -->
+  <?php include __DIR__ . '/../components/header.php'; ?>   <!-- ✅ Navbar + Hot Topics -->
 
 
   <!--  Main Content -->
@@ -43,7 +45,7 @@ function getPostImage($imageUrl) {
       <?php foreach ($posts as $post): ?>
     <a href="post.php?id=<?= $post['id'] ?>" 
       class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-      <img src="<?= htmlspecialchars('uploads/' . basename($post['image_url'])) ?>" alt="post" class="w-full h-48 object-cover">
+      <img src="../uploads/<?= htmlspecialchars(basename($post['image_url'])) ?>" alt="post" class="w-full h-48 object-cover">
 
       <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
       <div class="p-4">
@@ -58,7 +60,7 @@ function getPostImage($imageUrl) {
 <?php endforeach; ?>
 
     </section>
-    <?php include 'sidebar.php'; ?>  <!-- ✅ About Me -->
+    <?php include __DIR__ . '/../components/sidebar.php'; ?> <!-- ✅ About Me -->
   </main>
 
 
@@ -84,10 +86,12 @@ function getPostImage($imageUrl) {
       </div>
   </section>
 
-  <?php include 'footer.php'; ?>   <!-- ✅ Footer -->
+  <?php include __DIR__ . '/../components/footer.php'; ?>   <!-- ✅ Footer -->
 
   <!--  JS -->
-  <script src="script.js"></script>
+  <script src="../script.js"></script>
+
+
 
 
 </body>

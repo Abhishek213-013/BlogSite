@@ -1,7 +1,7 @@
 <aside class="bg-white p-6 rounded-lg shadow order-last lg:order-none">
   <h3 class="text-lg font-semibold mb-4">About Myself</h3>
   <div class="flex flex-col items-center text-center">
-    <img src="image.jpg" alt="author" class="w-20 h-20 rounded-full mb-3">
+    <img src="../uploads/image.jpg" alt="author" class="w-20 h-20 rounded-full mb-3">
     <h4 class="font-bold">Abhishek Chowdhury</h4>
     <p class="text-sm text-gray-500">Software Engineer.</p>
     <p class="text-gray-600 text-sm mt-2">

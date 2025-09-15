@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include __DIR__ . '/../db.php';
 $settingsResult = $conn->query("SELECT * FROM settings WHERE id = 1");
 $settings = $settingsResult->fetch_assoc();
 ?>
@@ -19,32 +19,37 @@ $settings = $settingsResult->fetch_assoc();
 <header class="border-b bg-white">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-3 py-3">
     <div class="flex flex-col">
-      <h1 class="text-2xl font-bold text-red-600"><?= htmlspecialchars($settings['site_title']) ?></h1>
+      <h1 class="text-2xl font-bold text-red-600">
+        <a href="../pages/index.php" class="text-red-600 hover:underline">
+          <?= htmlspecialchars($settings['site_title']) ?>
+       </a>
+      </h1>
+
       <h2 class="text-xl font-semibold text-gray-500"><?= htmlspecialchars($settings['site_subtitle']) ?></h2>
     </div>
 
     <div class="flex items-center gap-4">
       <nav>
         <ul class="flex gap-6 text-gray-700 font-medium relative items-center">
-          <li><a href="index.php" class="hover:text-red-600">Home</a></li>
-          <li><a href="business.php" class="hover:text-red-600">Business</a></li>
+          <li><a href="../pages/index.php" class="hover:text-red-600">Home</a></li>
+          <li><a href="../pages/business.php" class="hover:text-red-600">Business</a></li>
           <li class="dropdown">
             <button class="hover:text-red-600 flex items-center gap-1">Lifestyle ▼</button>
             <ul class="dropdown-menu">
-              <li><a href="lifestyle-simple.php">Simple</a></li>
-              <li><a href="lifestyle-health.php">Health</a></li>
-              <li><a href="lifestyle-working.php">Working</a></li>
+              <li><a href="../pages/lifestyle-simple.php">Simple</a></li>
+              <li><a href="../pages/lifestyle-health.php">Health</a></li>
+              <li><a href="../pages/lifestyle-working.php">Working</a></li>
             </ul>
           </li>
-          <li><a href="technology.php" class="hover:text-red-600">Technology</a></li>
+          <li><a href="../pages/technology.php" class="hover:text-red-600">Technology</a></li>
           <li class="dropdown">
             <button class="hover:text-red-600 flex items-center gap-1">Travel ▼</button>
             <ul class="dropdown-menu">
-              <li><a href="travel-destinations.php">Destinations</a></li>
-              <li><a href="travel-outdoor.php">Outdoor</a></li>
+              <li><a href="../pages/travel-destinations.php">Destinations</a></li>
+              <li><a href="../pages/travel-outdoor.php">Outdoor</a></li>
             </ul>
           </li>
-          <li><a href="finance.php" class="hover:text-red-600">Finance</a></li>
+          <li><a href="../pages/finance.php" class="hover:text-red-600">Finance</a></li>
           
           <!-- Search Icon inside Navbar -->
           <li>
