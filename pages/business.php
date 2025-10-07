@@ -1,3 +1,11 @@
+<?php
+include __DIR__ . '/../db.php'; // DB connection
+
+// Fetch business posts from database
+$businessPostsResult = $conn->query("SELECT * FROM business_posts ORDER BY created_at DESC");
+$businessPosts = $businessPostsResult->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +18,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <?php include __DIR__ . '/../components/header.php'; ?>   <!-- ✅ Navbar + Hot Topics -->
+  <?php include __DIR__ . '/../components/header.php'; ?> <!-- Navbar + Hot Topics -->
 
   <!--  Main Content -->
   <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -18,105 +26,76 @@
     <!-- Left Articles -->
     <section id="blogList" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-      <!-- Business Posts -->
-      <a href="post1.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/startup.jpg" alt="post" class="w-full h-48 object-cover">
-        <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">6 min read</span>
-        <div class="p-4">
-          <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded">Business</span>
-          <h2 class="text-lg font-semibold mt-2">Top 10 Tips for Scaling Your Startup</h2>
-          <p class="text-sm text-gray-500 mt-1">By Admin • September 12, 2025</p>
-          <p class="text-gray-600 mt-2 text-sm">Scaling your business requires careful planning and strategy...</p>
-        </div>
-      </a>
-
-      <a href="post2.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/business_finance.jpg" alt="post" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">How to Keep Your Business Finances Organized</h2>
-          <p class="text-sm text-gray-500 mt-1">By Admin • September 10, 2025</p>
-          <p class="text-gray-600 mt-2 text-sm">Organizing finances is essential to make informed decisions and avoid mistakes...</p>
-        </div>
-      </a>
-
-      <a href="post3.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/marketing_strategy.jpg" alt="post" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">Marketing Strategies That Actually Work in 2025</h2>
-          <p class="text-sm text-gray-500 mt-1">By Admin • September 8, 2025</p>
-          <p class="text-gray-600 mt-2 text-sm">Discover the latest marketing tactics that can increase your ROI and brand visibility...</p>
-        </div>
-      </a>
-
-      <a href="post4.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/remote_team.jpg" alt="post" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">How to Build a Remote Team Successfully</h2>
-          <p class="text-sm text-gray-500 mt-1">By Admin • September 5, 2025</p>
-          <p class="text-gray-600 mt-2 text-sm">Remote teams can thrive if you implement effective communication and collaboration...</p>
-        </div>
-      </a>
-
-      <a href="post5.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/financial_planning.jpg" alt="post" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold">Financial Planning for Small Business Owners</h2>
-          <p class="text-sm text-gray-500 mt-1">By Admin • September 1, 2025</p>
-          <p class="text-gray-600 mt-2 text-sm">A comprehensive guide to budgeting, saving, and investing for small business success...</p>
-        </div>
-      </a>
+      <!-- Dynamic Business Posts -->
+      <?php if (!empty($businessPosts)): ?>
+        <?php foreach($businessPosts as $post): ?>
+          <a href="post.php?id=<?= $post['id'] ?>" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
+            <?php if (!empty($post['image_url'])): ?>
+              <img src="../<?= htmlspecialchars($post['image_url']) ?>" alt="post" class="w-full h-48 object-cover">
+            <?php endif; ?>
+            <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">6 min read</span>
+            <div class="p-4">
+              <?php if(!empty($post['category'])): ?>
+                <span class="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded"><?= htmlspecialchars($post['category']) ?></span>
+              <?php endif; ?>
+              <h2 class="text-lg font-semibold mt-2"><?= htmlspecialchars($post['title']) ?></h2>
+              <?php if(!empty($post['author']) || !empty($post['created_at'])): ?>
+                <p class="text-sm text-gray-500 mt-1">
+                  By <?= htmlspecialchars($post['author'] ?: 'Admin') ?> • <?= date("F j, Y", strtotime($post['created_at'])) ?>
+                </p>
+              <?php endif; ?>
+              <?php if(!empty($post['content'])): ?>
+                <p class="text-gray-600 mt-2 text-sm"><?= htmlspecialchars(substr($post['content'], 0, 100)) ?>...</p>
+              <?php endif; ?>
+            </div>
+          </a>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <p class="text-gray-500">No business posts found.</p>
+      <?php endif; ?>
 
     </section>
-    <?php include __DIR__ . '/../components/sidebar.php'; ?>  <!-- ✅ About Me -->
-  
+
+    <?php include __DIR__ . '/../components/sidebar.php'; ?> <!-- Sidebar / About Me -->
+
   </main>
 
-  <!--  Latest Stories -->
+  <!--  Latest Stories Section -->
   <section class="max-w-7xl mx-auto px-4 py-8">
     <h2 class="text-xl font-bold mb-4">Latest Stories</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
 
-      <a href="story1.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/ballet_performance.jpg" alt="story" class="w-full h-48 object-cover">
-        <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
-        <div class="p-4">
-          <h3 class="font-semibold">Ballet Performances That Inspire</h3>
-        </div>
-      </a>
+      <?php
+      // Example: You can fetch latest 3-6 stories dynamically from another table, e.g., `posts`
+      $latestStoriesResult = $conn->query("SELECT * FROM posts ORDER BY created_at DESC LIMIT 6");
+      $latestStories = $latestStoriesResult->fetch_all(MYSQLI_ASSOC);
 
-
-      <a href="story2.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/innovative_business.jpg" alt="story" class="w-full h-48 object-cover">
-        <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">7 min read</span>
-        <div class="p-4">
-          <h3 class="font-semibold">Innovative Business Ideas for 2025</h3>
-        </div>
-      </a>
-
-      <a href="story3.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/tech_trends.jpg" alt="story" class="w-full h-48 object-cover">
-        <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">4 min read</span>
-        <div class="p-4">
-          <h3 class="font-semibold">Top Tech Trends Changing Businesses</h3>
-        </div>
-      </a>
-
-      <a href="story5.php" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
-        <img src="../uploads/effective_leadership.jpg" alt="story" class="w-full h-48 object-cover">
-        <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
-        <div class="p-4">
-          <h3 class="font-semibold">Effective Leadership Skills for CEOs</h3>
-        </div>
-      </a>
+      if(!empty($latestStories)):
+        foreach($latestStories as $story):
+      ?>
+        <a href="../posts/post.php?id=<?= $story['id'] ?>" class="relative bg-white rounded-lg shadow hover:shadow-lg hover:scale-105 transform transition duration-300 overflow-hidden block">
+          <?php if(!empty($story['image_url'])): ?>
+            <img src="../<?= htmlspecialchars($story['image_url']) ?>" alt="story" class="w-full h-48 object-cover">
+          <?php endif; ?>
+          <span class="absolute top-2 left-2 bg-white text-gray-800 text-xs px-2 py-1 rounded shadow">5 min read</span>
+          <div class="p-4">
+            <h3 class="font-semibold"><?= htmlspecialchars($story['title']) ?></h3>
+          </div>
+        </a>
+      <?php
+        endforeach;
+      else:
+      ?>
+        <p class="text-gray-500">No stories available.</p>
+      <?php endif; ?>
 
     </div>
   </section>
 
-  <?php include __DIR__ . '/../components/footer.php'; ?>   <!-- ✅ Footer -->
+  <?php include __DIR__ . '/../components/footer.php'; ?> <!-- Footer -->
 
-  <!--  JS: Toggle Search + Dropdowns -->
+  <!-- JS: Toggle Search + Dropdowns -->
   <script src="../script.js"></script>
-
 
 </body>
 </html>

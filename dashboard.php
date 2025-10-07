@@ -39,7 +39,7 @@ $expiry_time    = $_SESSION['admin_expiry'];
               <p class="text-gray-600">Edit site-wide content.</p>
           </a>
 
-          <a href="manage_posts.php" class="block p-6 bg-white rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-1 text-center">
+          <a href="manage_your_posts.php" class="block p-6 bg-white rounded-lg shadow hover:shadow-xl transition transform hover:-translate-y-1 text-center">
               <h3 class="text-lg font-semibold mb-2">Manage Blog Posts</h3>
               <p class="text-gray-600">Add, edit, delete posts.</p>
           </a>
